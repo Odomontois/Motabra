@@ -23,7 +23,7 @@
 	</servlet-mapping>
     <servlet>
         <servlet-name>scala-hello</servlet-name>
-        <servlet-class>AnotherHello</servlet-class>
+        <servlet-class>web.view.AnotherHello</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>scala-hello</servlet-name>
