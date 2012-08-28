@@ -1,0 +1,9 @@
+MongoDB 2.0 database added.  Please make note of these credentials:
+
+       Root User: admin
+   Root Password: IQKlZWkpLtnu
+   Database Name: Motabra
+
+Connection URL: mongodb://127.4.87.1:27017/
+
+You can manage your new MongoDB by also embedding rockmongo-1.1
