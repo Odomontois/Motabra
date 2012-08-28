@@ -12,9 +12,9 @@ import reflect.BeanProperty
  */
 object Connection{
   def apply() =  {
-    (System.getenv("OPENSHIFT_NOSQL_DB_URL"), System.getenv("OPENSHIFT_NOSQL_DB_PORT")) match{
+    (System.getenv("OPENSHIFT_NOSQL_DB_HOST"), System.getenv("OPENSHIFT_NOSQL_DB_PORT")) match{
       case (null,null) => MongoConnection()
-      case (url,port)  => MongoConnection(url,port.toInt)
+      case (host,port)  => MongoConnection(host,port.toInt)
     }
   }
 }
