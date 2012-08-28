@@ -29,6 +29,14 @@
         <servlet-name>scala-hello</servlet-name>
         <url-pattern>/scala</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>mongo</servlet-name>
+        <jsp-file>/mongotest.jspx </jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>mongo</servlet-name>
+        <url-pattern>/mongo</url-pattern>
+    </servlet-mapping>
 
 </web-app>
 

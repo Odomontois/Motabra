@@ -1,6 +1,7 @@
 package db.util
 
 import com.mongodb.casbah.MongoConnection
+import reflect.BeanProperty
 
 /**
  * Created with IntelliJ IDEA.
@@ -10,8 +11,16 @@ import com.mongodb.casbah.MongoConnection
  * To change this template use File | Settings | File Templates.
  */
 object Connection{
-  def appply =  {
-    System.getenv()
-    MongoConnection()
+  def apply() =  {
+    (System.getenv("OPENSHIFT_NOSQL_DB_URL"), System.getenv("OPENSHIFT_NOSQL_DB_PORT")) match{
+      case (null,null) => MongoConnection()
+      case (url,port)  => MongoConnection(url,port.toInt)
+    }
   }
+}
+class Connection{
+  @BeanProperty
+  val mongo = Connection()
+  @BeanProperty
+  val version = mongo.version
 }

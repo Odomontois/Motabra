@@ -1,0 +1,15 @@
+<!--
+  Created by IntelliJ IDEA.
+  User: Oleg
+  Date: 29.08.12
+  Time: 1:12
+  To change this template use File | Settings | File Templates.
+-->
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" xmlns="http://www.w3.org/1999/xhtml" version="2.0">
+    <jsp:directive.page contentType="text/html; ISO-8859-1"/>
+    <html>
+    <head><title>Simple jspx page</title></head>
+    <jsp:useBean id="connection" class="db.util.Connection"/>
+    <body>Mongo version = <jsp:getProperty name="connection" property="version"/> </body>
+    </html>
+</jsp:root>
