@@ -13,29 +13,19 @@
     <html>
     <head><title>Environment variables</title></head>
     <body>
-    <jsp:declaration><![CDATA[ public java.util.Set<Map.Entry<String, String>> envs = System.getenv().entrySet();]]></jsp:declaration>
+    <jsp:useBean id="back" class="web.view.Environment"/>
     <table border="2">
         <tr>
             <th>Variable</th>
             <th>Value</th>
         </tr>
-        <jsp:scriptlet><![CDATA[
-            for (Map.Entry<String, String> env : envs) {
-            ]]>
-        </jsp:scriptlet>
-        <tr>
-            <td>
-                <jsp:expression>env.getKey()</jsp:expression>
-            </td>
-            <td>
-                <jsp:expression>env.getValue()</jsp:expression>
-            </td>
-        </tr>
-        <jsp:scriptlet>
-            }
-        </jsp:scriptlet>
+        <jspx:forEach var="env" items="${back.envs}">
+            <tr>
+                <td>${env.key}</td>
+                <td>${env.value}</td>
+            </tr>
+        </jspx:forEach>
     </table>
     </body>
-    .
     </html>
 </jsp:root>
