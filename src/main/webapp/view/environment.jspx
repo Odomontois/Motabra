@@ -1,0 +1,31 @@
+<!--
+  Created by IntelliJ IDEA.
+  User: odomontois
+  Date: 29.08.12
+  Time: 11:25
+  To change this template use File | Settings | File Templates.
+-->
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" xmlns="http://www.w3.org/1999/xhtml" version="2.0"
+          xmlns:jspx="http://java.sun.com/jsp/jstl/core" xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <jsp:directive.page import="java.util.Map"/>
+    <jsp:directive.page contentType="text/html; ISO-8859-1"/>
+
+    <html>
+    <head><title>Environment variables</title></head>
+    <body>
+    <jsp:useBean id="back" class="web.view.Environment"/>
+    <table border="2">
+        <tr>
+            <th>Variable</th>
+            <th>Value</th>
+        </tr>
+        <jspx:forEach var="env" items="${back.envs}">
+            <tr>
+                <td>${env.key}</td>
+                <td>${env.value}</td>
+            </tr>
+        </jspx:forEach>
+    </table>
+    </body>
+    </html>
+</jsp:root>

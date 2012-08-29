@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
-	metadata-complete="false">
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         metadata-complete="false">
 
-	<servlet>
-		<servlet-name>health</servlet-name>
-		<jsp-file>/health.jsp</jsp-file>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>health</servlet-name>
-		<url-pattern>/health</url-pattern>
-	</servlet-mapping>
-	<servlet>
-		<servlet-name>hello</servlet-name>
-		<servlet-class>Hello</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>hello</servlet-name>
-		<url-pattern>/hello</url-pattern>
-	</servlet-mapping>
+    <servlet>
+        <servlet-name>health</servlet-name>
+        <jsp-file>/health.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>health</servlet-name>
+        <url-pattern>/health</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>hello</servlet-name>
+        <servlet-class>Hello</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>hello</servlet-name>
+        <url-pattern>/hello</url-pattern>
+    </servlet-mapping>
     <servlet>
         <servlet-name>scala-hello</servlet-name>
         <servlet-class>web.view.AnotherHello</servlet-class>
@@ -31,11 +31,19 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>mongo</servlet-name>
-        <jsp-file>/mongotest.jspx </jsp-file>
+        <jsp-file>/mongotest.jspx</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>mongo</servlet-name>
         <url-pattern>/mongo</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>environment</servlet-name>
+        <jsp-file>/view/environment.jspx</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>environment</servlet-name>
+        <url-pattern>/env</url-pattern>
     </servlet-mapping>
 
 </web-app>
