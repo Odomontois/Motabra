@@ -41,6 +41,21 @@
             <version>2.1.5-1</version>
             <type>pom</type>
         </dependency>
+        <dependency>
+            <groupId>org.jboss.web</groupId>
+            <artifactId>jbossweb</artifactId>
+            <!-- TODO: don't hard code this -->
+            <version>7.0.16.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.as</groupId>
+            <artifactId>jboss-as-server</artifactId>
+
+            <!-- Use the locally compiled snapshot for now
+                 TODO: don't hard code this.-->
+            <version>7.1.2.Final</version>
+
+        </dependency>
     </dependencies>
     <profiles>
         <profile>
@@ -108,6 +123,22 @@
                 <enabled>false</enabled>
             </snapshots>
         </repository>
+
+        <repository>
+            <id>jboss-public-repository-group</id>
+            <name>JBoss Public Repository Group</name>
+            <url>http://repository.jboss.org/nexus/content/groups/public/</url>
+            <layout>default</layout>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </snapshots>
+        </repository>
+
         <repository>
             <id>java.net2</id>
             <name>Repository hosting the jee6 artifacts</name>

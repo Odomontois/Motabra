@@ -2,6 +2,7 @@ package web.view
 
 import javax.servlet.http.{HttpServletResponse, HttpServletRequest, HttpServlet}
 import scala.collection.JavaConversions._
+import javax.servlet.annotation.WebServlet
 
 /**
  * Created with IntelliJ IDEA.
@@ -10,6 +11,7 @@ import scala.collection.JavaConversions._
  * Time: 0:55
  * To change this template use File | Settings | File Templates.
  */
+
 class AnotherHello extends HttpServlet {
   override def doGet(req: HttpServletRequest, resp: HttpServletResponse) {
     val x = "Привет"
@@ -17,7 +19,7 @@ class AnotherHello extends HttpServlet {
     resp.setCharacterEncoding("UTF-8")
     for (item <- System.getenv.entrySet()) {
       resp.getWriter.println()
-      resp.getWriter.println("%s : %s".format(item.getKey, item.getValue) )
+      resp.getWriter.println("%s : %s".format(item.getKey, item.getValue))
     }
 
   }
