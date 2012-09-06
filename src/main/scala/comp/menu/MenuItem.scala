@@ -2,6 +2,7 @@ package comp.menu
 
 import javax.annotation.PostConstruct
 import web.view.Environment
+import javax.interceptor.InvocationContext
 
 /**
  * Created with IntelliJ IDEA.
@@ -14,7 +15,7 @@ trait MenuItem {
   val name:String
 
   @PostConstruct
-  def addSelf {
+  def addSelf(ctx : InvocationContext) {
     Environment.registeredNames ::= name
   }
 }

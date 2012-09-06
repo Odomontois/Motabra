@@ -45,6 +45,5 @@
         <servlet-name>environment</servlet-name>
         <url-pattern>/env</url-pattern>
     </servlet-mapping>
-
 </web-app>
 
