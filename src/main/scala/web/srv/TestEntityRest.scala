@@ -3,6 +3,7 @@ package web.srv
 import javax.servlet.http.{HttpServletResponse, HttpServletRequest, HttpServlet}
 import web.view.test.{Entry, TestEntities}
 import javax.servlet.annotation.WebServlet
+import db.util.record.TestEntity
 
 /**
  * Created with IntelliJ IDEA.
@@ -24,7 +25,10 @@ class TestEntityRest extends HttpServlet {
   override def doPut(req: HttpServletRequest, resp: HttpServletResponse) {
     val firstName = req.getParameter(Param.firstName)
     val secondName = req.getParameter(Param.lastName)
-    TestEntities.entities ::= Entry(firstName = firstName, lastName = secondName)
+    TestEntity
+      .firstName(firstName)
+      .secondName(secondName)
+      .save
   }
 
   override def doDelete(req: HttpServletRequest, resp: HttpServletResponse) {

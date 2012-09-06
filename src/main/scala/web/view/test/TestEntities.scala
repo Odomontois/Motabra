@@ -2,6 +2,8 @@ package web.view.test
 
 import reflect.BeanProperty
 import collection.JavaConversions._
+import db.util.record.TestEntity
+import db.util.record.TestEntity.firstName
 
 /**
  * Created with IntelliJ IDEA.
@@ -21,7 +23,11 @@ class TestEntities {
 }
 
 object TestEntities {
-  var entities = List(Entry("Тестовый", "Чувак"))
+  def entities: List[Entry] = List(Entry("Тестовый", "Чувак")) ::: TestEntity.findAll.map(
+    entity => Entry(
+      firstName = entity.firstName.is,
+      lastName = entity.secondName.is
+    ))
 }
 
 case class Entry(@BeanProperty val firstName: String,
