@@ -13,13 +13,10 @@ import com.mongodb.{ServerAddress, Mongo}
  * Time: 20:45
  * To change this template use File | Settings | File Templates.
  */
-@Singleton
-@Startup
-class MongoConfig {
+object MongoConfig {
   val dbName = "test"
 
-  @PostConstruct
-  def addSelf(ctx: InvocationContext) {
+  lazy val config = {
     List(
       "OPENSHIFT_NOSQL_DB_HOST",
       "OPENSHIFT_NOSQL_DB_PORT",

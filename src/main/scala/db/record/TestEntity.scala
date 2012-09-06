@@ -2,6 +2,7 @@ package db.util.record
 
 import net.liftweb.mongodb.record.{MongoMetaRecord, MongoRecord}
 import net.liftweb.record.field.StringField
+import db.util.MongoConfig
 
 /**
  * Created with IntelliJ IDEA.
@@ -21,4 +22,6 @@ class TestEntity private() extends MongoRecord[TestEntity] {
 
 }
 
-object TestEntity extends TestEntity with MongoMetaRecord[TestEntity]
+object TestEntity extends TestEntity with MongoMetaRecord[TestEntity] {
+  MongoConfig.config
+}
