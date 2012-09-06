@@ -2,7 +2,6 @@ package web.view
 
 import javax.servlet.http.{HttpServletResponse, HttpServletRequest, HttpServlet}
 import scala.collection.JavaConversions._
-import javax.servlet.annotation.WebServlet
 
 /**
  * Created with IntelliJ IDEA.

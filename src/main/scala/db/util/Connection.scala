@@ -2,7 +2,6 @@ package db.util
 
 import com.mongodb.casbah.MongoConnection
 import reflect.BeanProperty
-import java.util
 
 /**
  * Created with IntelliJ IDEA.
@@ -12,17 +11,18 @@ import java.util
  * To change this template use File | Settings | File Templates.
  */
 
-object Connection{
+object Connection {
 
 
-  def apply() =  {
-    (System.getenv("OPENSHIFT_NOSQL_DB_HOST"), System.getenv("OPENSHIFT_NOSQL_DB_PORT")) match{
-      case (null,null) => MongoConnection()
-      case (host,port)  => MongoConnection(host,port.toInt)
+  def apply() = {
+    (System.getenv("OPENSHIFT_NOSQL_DB_HOST"), System.getenv("OPENSHIFT_NOSQL_DB_PORT")) match {
+      case (null, null) => MongoConnection()
+      case (host, port) => MongoConnection(host, port.toInt)
     }
   }
 }
-class Connection{
+
+class Connection {
 
   @BeanProperty
   val mongo = Connection()

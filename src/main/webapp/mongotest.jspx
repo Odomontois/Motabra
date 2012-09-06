@@ -10,6 +10,8 @@
     <html>
     <head><title>Simple jspx page</title></head>
     <jsp:useBean id="connection" class="db.util.Connection"/>
-    <body>Mongo version = <jsp:getProperty name="connection" property="version"/> </body>
+    <body>Mongo version =
+    <jsp:getProperty name="connection" property="version"/>
+    </body>
     </html>
 </jsp:root>

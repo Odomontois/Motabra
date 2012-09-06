@@ -12,10 +12,10 @@ import javax.interceptor.InvocationContext
  * To change this template use File | Settings | File Templates.
  */
 trait MenuItem {
-  val name:String
+  val name: String
 
   @PostConstruct
-  def addSelf(ctx : InvocationContext) {
+  def addSelf(ctx: InvocationContext) {
     Environment.registeredNames ::= name
   }
 }
