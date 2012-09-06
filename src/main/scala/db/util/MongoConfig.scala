@@ -20,11 +20,21 @@ class MongoConfig {
 
   @PostConstruct
   def addSelf(ctx: InvocationContext) {
-    MongoDB.defineDb(DefaultMongoIdentifier,
-      (System.getenv("OPENSHIFT_NOSQL_DB_HOST"), System.getenv("OPENSHIFT_NOSQL_DB_PORT")) match {
-        case (null, null) => new Mongo()
-        case (host, port) => new Mongo(new ServerAddress(host, port.toInt))
-      },
-      dbName)
+    List(
+      "OPENSHIFT_NOSQL_DB_HOST",
+      "OPENSHIFT_NOSQL_DB_PORT",
+      "OPENSHIFT_NOSQL_DB_USERNAME",
+      "OPENSHIFT_NOSQL_DB_PASSWORD"
+    ) map (env => System.getenv(env))
+    match {
+      case List(null, null, null, null) => MongoDB.defineDb(DefaultMongoIdentifier, new Mongo, dbName)
+      case List(host, port, username, pwd) => MongoDB.defineDbAuth(
+        DefaultMongoIdentifier,
+        new Mongo(new ServerAddress(host, port.toInt)),
+        dbName,
+        username,
+        pwd
+      )
+    }
   }
 }
