@@ -19,9 +19,9 @@ class TestEntityRest extends HttpServlet {
   import TestEntityRest._
 
   override def doGet(req: HttpServletRequest, resp: HttpServletResponse) {
-    MongoConfig.config()
+
     resp.setContentType("text/plain")
-    resp.getWriter.print("servlet " + this.getServletName + " is running")
+    resp.getWriter.print(MongoConfig.config())
 
   }
 
