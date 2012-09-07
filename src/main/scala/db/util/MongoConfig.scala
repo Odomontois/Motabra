@@ -15,33 +15,33 @@ import com.mongodb.{ServerAddress, Mongo}
  */
 object MongoConfig {
   val dbName = "test"
+  val openShiftUserName = "test"
+  val openShiftPassword = "upparas"
   lazy val configure = config()
 
   def config() = {
     List(
       "OPENSHIFT_NOSQL_DB_HOST",
-      "OPENSHIFT_NOSQL_DB_PORT",
-      "OPENSHIFT_NOSQL_DB_USERNAME",
-      "OPENSHIFT_NOSQL_DB_PASSWORD"
+      "OPENSHIFT_NOSQL_DB_PORT"
     ) map (env => System.getenv(env))
     match {
-      case List(null, null, null, null) => {
+      case List(null, null) => {
         MongoDB.defineDb(DefaultMongoIdentifier, new Mongo, dbName)
         "ok"
       }
-      case List(host, port, username, pwd) => {
+      case List(host, port) => {
         try {
           MongoDB.defineDbAuth(
             DefaultMongoIdentifier,
             new Mongo(new ServerAddress(host, port.toInt)),
             dbName,
-            username,
-            pwd
+            openShiftUserName,
+            openShiftPassword
           )
-          List(host, port, username, pwd) toString()
+          List(host, port) toString()
         }
         catch {
-          case ex: Exception => List(host, port, username, pwd).toString() + ex.getMessage
+          case ex: Exception => List(host, port).toString() + ex.getMessage
         }
       }
       case _ => throw new MongoConfigException
