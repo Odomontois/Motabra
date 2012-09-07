@@ -16,7 +16,7 @@ import com.mongodb.{ServerAddress, Mongo}
 object MongoConfig {
   val dbName = "test"
 
-  lazy val config = {
+  def config() {
     List(
       "OPENSHIFT_NOSQL_DB_HOST",
       "OPENSHIFT_NOSQL_DB_PORT",
@@ -32,6 +32,9 @@ object MongoConfig {
         username,
         pwd
       )
+      case _ => throw new MongoConfigException
     }
   }
 }
+
+class MongoConfigException extends Exception

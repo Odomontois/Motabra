@@ -12,9 +12,12 @@ import db.util.MongoConfig
  * To change this template use File | Settings | File Templates.
  */
 class TestEntity private() extends MongoRecord[TestEntity] {
-  def meta = TestEntity
+  def meta = {
+    MongoConfig.config
+    TestEntity
+  }
 
-  object id extends StringField(this, 0)
+  def id = firstName.is + " " + secondName.is
 
   object firstName extends StringField(this, 0)
 
@@ -23,5 +26,4 @@ class TestEntity private() extends MongoRecord[TestEntity] {
 }
 
 object TestEntity extends TestEntity with MongoMetaRecord[TestEntity] {
-  MongoConfig.config
 }

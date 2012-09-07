@@ -4,6 +4,7 @@ import javax.servlet.http.{HttpServletResponse, HttpServletRequest, HttpServlet}
 import web.view.test.{Entry, TestEntities}
 import javax.servlet.annotation.WebServlet
 import db.util.record.TestEntity
+import db.util.MongoConfig
 
 /**
  * Created with IntelliJ IDEA.
@@ -18,8 +19,10 @@ class TestEntityRest extends HttpServlet {
   import TestEntityRest._
 
   override def doGet(req: HttpServletRequest, resp: HttpServletResponse) {
+    MongoConfig.config()
     resp.setContentType("text/plain")
     resp.getWriter.print("servlet " + this.getServletName + " is running")
+
   }
 
   override def doPut(req: HttpServletRequest, resp: HttpServletResponse) {
