@@ -20,16 +20,13 @@ object MongoConfig {
   lazy val configure = config()
 
   def config() = {
-    List(
-      "OPENSHIFT_NOSQL_DB_HOST",
-      "OPENSHIFT_NOSQL_DB_PORT"
-    ) map (env => System.getenv(env))
+    "OPENSHIFT_NOSQL_DB_HOST" :: "OPENSHIFT_NOSQL_DB_PORT" :: Nil map (System.getenv(_))
     match {
-      case List(null, null) => {
+      case null :: null :: Nil => {
         MongoDB.defineDb(DefaultMongoIdentifier, new Mongo, dbName)
         "ok"
       }
-      case List(host, port) => {
+      case host :: port :: Nil => {
         try {
           MongoDB.defineDbAuth(
             DefaultMongoIdentifier,

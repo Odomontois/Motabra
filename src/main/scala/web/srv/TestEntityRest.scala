@@ -5,6 +5,7 @@ import web.view.test.{Entry, TestEntities}
 import javax.servlet.annotation.WebServlet
 import db.util.record.TestEntity
 import db.util.MongoConfig
+import scala.Option
 
 /**
  * Created with IntelliJ IDEA.
@@ -35,7 +36,8 @@ class TestEntityRest extends HttpServlet {
   }
 
   override def doDelete(req: HttpServletRequest, resp: HttpServletResponse) {
-    super.doDelete(req, resp)
+    val mongoId = req.getParameter(Param.mongoId)
+    TestEntity.find(mongoId) openOr (throw new NotFoundException) delete_!
   }
 }
 
@@ -44,6 +46,9 @@ object TestEntityRest {
   object Param {
     val firstName = "firstName"
     val lastName = "lastName"
+    val mongoId = "mongoId"
   }
 
 }
+
+class NotFoundException extends Exception
