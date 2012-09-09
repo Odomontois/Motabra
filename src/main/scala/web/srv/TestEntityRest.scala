@@ -29,7 +29,7 @@ class TestEntityRest extends HttpServlet {
   override def doPut(req: HttpServletRequest, resp: HttpServletResponse) {
     val firstName = req.getParameter(Param.firstName)
     val secondName = req.getParameter(Param.lastName)
-    TestEntity
+    TestEntity.createRecord
       .firstName(firstName)
       .secondName(secondName)
       .save
