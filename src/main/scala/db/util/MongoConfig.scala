@@ -44,8 +44,17 @@ object MongoConfig {
           case ex: Exception => List(host, port).toString() + ex.getMessage
         }
       }
-      case _ => throw new MongoConfigException
+      case _ => ""
     }
+  }
+}
+
+@Singleton
+@Startup
+class MongoConfig {
+  @PostConstruct
+  def configMongo(context: InvocationContext) {
+    MongoConfig.config()
   }
 }
 
