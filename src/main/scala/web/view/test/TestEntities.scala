@@ -23,13 +23,15 @@ class TestEntities {
 }
 
 object TestEntities {
-  def entities: List[Entry] = List(Entry("Тестовый", "Чувак")) ::: TestEntity.findAll.map(
+  def entities: List[Entry] = TestEntity.findAll.map(
     entity => Entry(
       firstName = entity.firstName.is,
-      lastName = entity.secondName.is
+      lastName = entity.secondName.is,
+      mongoId = entity.id.value
     ))
 }
 
 case class Entry(@BeanProperty val firstName: String,
-                 @BeanProperty val lastName: String)
+                 @BeanProperty val lastName: String,
+                 @BeanProperty val mongoId: String)
 

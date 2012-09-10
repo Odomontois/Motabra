@@ -15,23 +15,44 @@ import com.mongodb.{ServerAddress, Mongo}
  */
 object MongoConfig {
   val dbName = "test"
+  val openShiftUserName = "test"
+  val openShiftPassword = "upparas"
+  lazy val configure = config()
 
-  lazy val config = {
-    List(
-      "OPENSHIFT_NOSQL_DB_HOST",
-      "OPENSHIFT_NOSQL_DB_PORT",
-      "OPENSHIFT_NOSQL_DB_USERNAME",
-      "OPENSHIFT_NOSQL_DB_PASSWORD"
-    ) map (env => System.getenv(env))
+  def config() = {
+    "OPENSHIFT_NOSQL_DB_HOST" :: "OPENSHIFT_NOSQL_DB_PORT" :: Nil map (System.getenv(_))
     match {
-      case List(null, null, null, null) => MongoDB.defineDb(DefaultMongoIdentifier, new Mongo, dbName)
-      case List(host, port, username, pwd) => MongoDB.defineDbAuth(
-        DefaultMongoIdentifier,
-        new Mongo(new ServerAddress(host, port.toInt)),
-        dbName,
-        username,
-        pwd
-      )
+      case null :: null :: Nil => {
+        MongoDB.defineDb(DefaultMongoIdentifier, new Mongo, dbName)
+        "ok"
+      }
+      case host :: port :: Nil => {
+        try {
+          MongoDB.defineDbAuth(
+            DefaultMongoIdentifier,
+            new Mongo(new ServerAddress(host, port.toInt)),
+            dbName,
+            openShiftUserName,
+            openShiftPassword
+          )
+          List(host, port) toString()
+        }
+        catch {
+          case ex: Exception => List(host, port).toString() + ex.getMessage
+        }
+      }
+      case _ => ""
     }
   }
 }
+
+@Singleton
+@Startup
+class MongoConfig {
+  @PostConstruct
+  def configMongo(context: InvocationContext) {
+    MongoConfig.config()
+  }
+}
+
+class MongoConfigException extends Exception
