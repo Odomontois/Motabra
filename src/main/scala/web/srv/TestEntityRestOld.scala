@@ -14,10 +14,10 @@ import scala.Option
  * Time: 21:41
  * To change this template use File | Settings | File Templates.
  */
-@WebServlet(name = "TestEntity", urlPatterns = Array("/test/entities"))
-class TestEntityRest extends HttpServlet {
+@WebServlet(name = "TestEntityOld", urlPatterns = Array("/test/entities"))
+class TestEntityRestOld extends HttpServlet {
 
-  import TestEntityRest._
+  import TestEntityRestOld._
 
   override def doGet(req: HttpServletRequest, resp: HttpServletResponse) {
 
@@ -41,7 +41,7 @@ class TestEntityRest extends HttpServlet {
   }
 }
 
-object TestEntityRest {
+object TestEntityRestOld {
 
   object Param {
     val firstName = "firstName"
