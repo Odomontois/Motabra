@@ -11,4 +11,4 @@ import db.util.record.TestEntity
  * To change this template use File | Settings | File Templates.
  */
 @WebServlet(name = "TestEntity", urlPatterns = Array("/test/entities/new"))
-class TestEntityRestNew extends EntityRestServlet(TestEntity)
+class TestEntityRest extends EntityRestServlet(TestEntity)
